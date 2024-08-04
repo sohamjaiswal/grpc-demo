@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/peer"
 )
 
-func (s *helloServer) SayHelloBidiStreaming(stream pb.GreetService_SayHelloBiDirectionalStreamingServer) error {
+func (s *helloServer) SayHelloBiDirectionalStreaming(stream pb.GreetService_SayHelloBiDirectionalStreamingServer) error {
 	ctx := stream.Context()
 	p, _ := peer.FromContext(ctx)
 	log.Printf("recieved SayHelloClientStreaming invocation from: %s", p.Addr.String())
