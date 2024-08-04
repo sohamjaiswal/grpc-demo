@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	pb "github.com/sosweetham/grpc-demo/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -20,8 +21,7 @@ func main() {
 
 	fmt.Print("Enter host address: ")
 	fmt.Scan(&host)
-	fmt.Print("\n")
-	fmt.Println("Enter port address: ")
+	fmt.Print("Enter port address: ")
 	fmt.Scan(&port)
 
 	hostAddress := host + ":" + port
@@ -32,11 +32,13 @@ func main() {
 	}
 	defer conn.Close()
 
-	// client := pb.NewGreetServiceClient(conn)
+	client := pb.NewGreetServiceClient(conn)
 
-	// names := &pb.NamesList{
-	// 	Names: []string{"Soham", "Alice", "Bob"},
-	// }
+	names := &pb.NamesList{
+		Names: []string{"Soham", "Alice", "Bob"},
+	}
 
 	// callSayHello(client)
+
+	callSayHelloServerStream(client, names)
 }

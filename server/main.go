@@ -33,9 +33,7 @@ func main() {
 	pb.RegisterGreetServiceServer(grpcServer, &helloServer{})
 	log.Printf("Greet Service registered at %v", lis.Addr())
 	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatalf("Failed to start GRPC server: %v", err)
+		log.Fatalf("Failed to serve: %v", err)
 	}
-
-
 	// fmt.Printf("%+v\n", config)
 }
